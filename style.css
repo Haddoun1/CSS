@@ -126,6 +126,9 @@ h2:nth-of-type(5) {
 
 button {
     z-index: 3;
+    border-radius: 50%;
+    color: black;
+    background-color: white;
 
 }
 
