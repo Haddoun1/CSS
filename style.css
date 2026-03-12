@@ -1,84 +1,159 @@
-body {
-     display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      height: 100vh;
-    background-color: #E3D082;
+:root {
+	color-scheme:light dark;
+	
+	--bg:light-dark(#E3D082, #473b07);
 }
 
-div{
+
+:root:has( [value="normal"]:checked ) {
+	color-scheme:light;
+}
+
+:root:has( [value="disco"]:checked ) {
+	color-scheme:dark;
+}
+
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg)
+}
+
+/* MARK: Radio base */
+
+body>main>div {
+    margin-top: 11rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-    "div1 div2 div3";
+    grid-template-areas:
+        "div1 div2 div3";
     width: clamp(20em, 60vw, 60em);
     height: clamp(8.3em, 25vw, 25em);
     background: #445640;
     border-color: #F0EACE;
     border-style: inset;
-    border-width: 0.5em;    
+    border-width: 0.5em;
+     animation-name: stretch;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+    animation-iteration-count: infinite; 
+
+    >div:nth-of-type(1) {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+            "div4 div5 div6";
+        grid-area: div1;
+        width: clamp(5em, 15vw, 15em);
+        height: clamp(7.3em, 22vw, 22em);
+        background: #445640;
+        border-color: #F0EACE;
+        border-style: inset;
+        border-width: clamp(0.3em, 0.5vw, 0.5em);
+        margin-top: clamp(0.3em, 1vw, 1em);
+        margin-left: clamp(0.3em, 1vw, 1em);
+
+        >div:nth-of-type(1) {
+            grid-area: div5;
+            width: clamp(0.1em, 2vw, 2em);
+            height: clamp(5em, 18.5vw, 18.5em);
+            background: #000000;
+            border-color: #F0EACE;
+            border-style: inset;
+            border-width: clamp(0.3em, 0.5vw, 0.5em);
+            justify-self: left;
+            align-self: center;
+        }
+
+        >div:nth-of-type(2) {
+            grid-area: div5;
+            width: clamp(0.1em, 2vw, 2em);
+            height: clamp(5em, 18.5vw, 18.5em);
+            background: #000000;
+            border-color: #F0EACE;
+            border-style: inset;
+            border-width: clamp(0.3em, 0.5vw, 0.5em);
+            justify-self: right;
+            align-self: center;
+        }
+
+
+    }
+
+    >div:nth-of-type(2) {
+        grid-area: div2;
+        width: clamp(1em, 4vw, 4em);
+        height: clamp(1em, 6vw, 7em);
+        background: #445640;
+        border-color: #F0EACE;
+        border-style: inset;
+        border-width: clamp(0.1em, 0.3vw, 0.3em);
+        justify-self: center;
+        align-self: center;
+    }
+
+    >div:nth-of-type(3) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            "div7 div8 div9 div10 div11 div12 div13";
+        grid-area: div3;
+        width: clamp(10.3em, 31vw, 31em);
+        height: clamp(7.3em, 22vw, 22em);
+        background: #445640;
+        border-color: #F0EACE;
+        border-style: inset;
+        border-width: clamp(0.3em, 0.5vw, 0.5em);
+        margin-top: clamp(0.3em, 1vw, 1em);
+        margin-right: clamp(0.3em, 1vw, 1em);
+
+    }
+
+    >button:nth-of-type(1) {
+        grid-area: div2;
+        width: clamp(3em, 6vw, 7em);
+        height: clamp(3em, 6vw, 7em);
+        border-color: #000000;
+        border-style: solid;
+        border-radius: 100%;
+        border-width: clamp(0.3em, 0.5vw, 0.5em);
+        margin-top: clamp(0.3em, 1vw, 1em);
+        justify-self: center;
+    }
+
+    >button:nth-of-type(2) {
+        grid-area: div2;
+        width: clamp(3em, 6vw, 7em);
+        height: clamp(3em, 6vw, 7em);
+        border-color: #000000;
+        border-style: solid;
+        border-radius: 100%;
+        border-width: clamp(0.3em, 0.5vw, 0.5em);
+        margin-bottom: clamp(0.3em, 1vw, 1em);
+        justify-self: center;
+        align-self: end;
+    }
+
+
 }
 
-div div:nth-of-type(1) {
-    grid-area: div1;
-    width: clamp(5em, 15vw, 15em); 
-    height: clamp(7.3em, 22vw, 22em); 
-    background: #445640;
-    border-color: #F0EACE;
-    border-style: inset;
-    border-width: clamp(0.3em, 0.5vw, 0.5em);
-    margin-top: clamp(0.3em, 1vw, 1em);
-    margin-left: clamp(0.3em, 1vw, 1em);
+@keyframes stretch {
+    0% {
+        transform: scale(1, 1)
+    }
+
+    20% {
+        transform: scale(1.2, 0.9)
+    }
+
+    60% {
+        transform: scale(0.8, 1.6)
+    }
+
+    100% {
+        transform: scale(1, 1)
+    }
 }
-
-div div:nth-of-type(2) {
-    grid-area: div2;
-    width: clamp(1em, 4vw, 4em); 
-    height: clamp(1em, 6vw, 7em); 
-    background: #445640;
-    border-color: #F0EACE;
-    border-style: inset;
-    border-width: clamp(0.3em, 0.5vw, 0.5em);
-    justify-self: center;
-    align-self: center;
-}
-
-div div:nth-of-type(3) {
-    grid-area: div3;
-    width: clamp(10.3em, 31vw, 31em); 
-    height: clamp(7.3em, 22vw, 22em); 
-    background: #445640;
-    border-color: #F0EACE;
-    border-style: inset;
-    border-width: clamp(0.3em, 0.5vw, 0.5em);
-    margin-top: clamp(0.3em, 1vw, 1em);
-    margin-right: clamp(0.3em, 1vw, 1em);
-}
-
-div button:nth-of-type(1) {
-    grid-area: div2;
-     width: clamp(3em, 8vw, 9em); 
-    height: clamp(3em, 8vw, 9em); 
-    border-color: #F0EACE;
-    border-style: inset;
-    border-radius: 100%;
-    border-width: clamp(0.3em, 0.5vw, 0.5em);
-    margin-top: clamp(0.3em, 1vw, 1em);
-    justify-self: center;
-}
-
-div button:nth-of-type(2) {
-    grid-area: div2;
-    width: clamp(3em, 8vw, 9em); 
-    height: clamp(3em, 8vw, 9em); 
-    border-color: #F0EACE;
-    border-style: inset;
-    border-radius: 100%;
-    border-width: clamp(0.3em, 0.5vw, 0.5em);
-    margin-bottom: clamp(0.3em, 1vw, 1em);
-    justify-self: center;
-    align-self: end;
-}
-
-
