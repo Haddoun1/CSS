@@ -1,6 +1,5 @@
 :root {
 	color-scheme:light dark;
-	
 	--bg:light-dark(#E3D082, #473b07);
 }
 
@@ -36,10 +35,10 @@ body>main>div {
     border-color: #F0EACE;
     border-style: inset;
     border-width: 0.5em;
-     animation-name: stretch;
+     /* animation-name: stretch;
     animation-timing-function: ease-in-out;
     animation-duration: 2s;
-    animation-iteration-count: infinite; 
+    animation-iteration-count: infinite;  */
 
     >div:nth-of-type(1) {
         display: grid;
@@ -122,6 +121,7 @@ body>main>div {
         border-width: clamp(0.3em, 0.5vw, 0.5em);
         margin-top: clamp(0.3em, 1vw, 1em);
         justify-self: center;
+        background-color: #473b07;
     }
 
     >button:nth-of-type(2) {
