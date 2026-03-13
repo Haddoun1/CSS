@@ -51,7 +51,11 @@ Readme voor het vak CSS
 
 <h2>Dag 5 (12-03-2026)</h2>
 <h3>Wat heb ik gedaan vandaag?</h3>
+<p></p>
 <h3>Hoelang heb ik er aan gewerkt?</h3>
+<p></p>
 <h3>Wat heb ik geleerd?</h3>
+<p></p>
 <h3>Wat ga ik morgen doen?</h3>
+<p></p>
 <h3>Bronnen</h3>

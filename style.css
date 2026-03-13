@@ -1,29 +1,53 @@
 :root {
-	color-scheme:light dark;
-	--bg:light-dark(#E3D082, #473b07);
+    color-scheme: light dark;
+    --bg: light-dark(#E3D082, #2d2609);
 }
 
-
-:root:has( [value="normal"]:checked ) {
-	color-scheme:light;
+:root:has([value="normal"]:checked) {
+    color-scheme: light;
 }
 
-:root:has( [value="disco"]:checked ) {
-	color-scheme:dark;
+:root:has([value="disco"]:checked) {
+    color-scheme: dark;
 }
-
 
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--bg)
+    background-color: var(--bg);
 }
 
+main::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: rgba(255, 255, 200, 0.35);
+
+    clip-path: polygon(29% 0%,
+            71% 0%,
+            100% 85%,
+            0% 85%);
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+:root:has([value="disco"]:checked) main::before {
+    opacity: 1;
+    animation-name: disco;
+    animation-timing-function: linear;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    z-index: 3;
+}
+
+:root:has([value])
 /* MARK: Radio base */
 
-body>main>div {
+body>main>form {
     margin-top: 11rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -35,10 +59,10 @@ body>main>div {
     border-color: #F0EACE;
     border-style: inset;
     border-width: 0.5em;
-     /* animation-name: stretch;
+    animation-name: stretch;
     animation-timing-function: ease-in-out;
     animation-duration: 2s;
-    animation-iteration-count: infinite;  */
+    animation-iteration-count: infinite; 
 
     >div:nth-of-type(1) {
         display: grid;
@@ -111,8 +135,9 @@ body>main>div {
 
     }
 
-    >button:nth-of-type(1) {
+    >label:nth-of-type(1) {
         grid-area: div2;
+        
         width: clamp(3em, 6vw, 7em);
         height: clamp(3em, 6vw, 7em);
         border-color: #000000;
@@ -121,10 +146,12 @@ body>main>div {
         border-width: clamp(0.3em, 0.5vw, 0.5em);
         margin-top: clamp(0.3em, 1vw, 1em);
         justify-self: center;
-        background-color: #473b07;
+        background: linear-gradient(90deg, #787878 0%,
+                #b5b5b5 25%, #e3e3e3 50%, #b5b5b5 75%, #787878 100%);
+        cursor: pointer;
     }
 
-    >button:nth-of-type(2) {
+    >label:nth-of-type(2) {
         grid-area: div2;
         width: clamp(3em, 6vw, 7em);
         height: clamp(3em, 6vw, 7em);
@@ -135,9 +162,18 @@ body>main>div {
         margin-bottom: clamp(0.3em, 1vw, 1em);
         justify-self: center;
         align-self: end;
+        background: linear-gradient(90deg, #787878 0%,
+                #b5b5b5 25%, #e3e3e3 50%, #b5b5b5 75%, #787878 100%);
+        cursor: pointer;
     }
 
 
+}
+
+body>main>div {
+    height: 100px;
+    width: clamp(100vw);
+    background-color: #301c00;
 }
 
 @keyframes stretch {
@@ -155,5 +191,31 @@ body>main>div {
 
     100% {
         transform: scale(1, 1)
+    }
+}
+
+@keyframes disco {
+    0% {
+        background: rgb(255 0 0 / 0.35);
+    }
+
+    20% {
+        background: rgb(255 255 0 / 0.35);
+    }
+
+    40% {
+        background: rgb(0 255 0 / 0.35);
+    }
+
+    60% {
+        background: rgb(0 255 255 / 0.35);
+    }
+
+    80% {
+        background: rgb(0 0 255 / 0.35);
+    }
+
+    100% {
+        background: rgb(255 0 255 / 0.35);
     }
 }
