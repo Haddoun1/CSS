@@ -140,9 +140,11 @@ body>main>form {
             grid-area: text;
             align-self: end;
             font-family: "Remarcle", serif;
-            border: 1rem ridge #F0EACE;
+          border-color: #F0EACE;
+        border-style: inset;
+        border-width: clamp(0.5em, 0.7vw, 0.7em);
             padding: 1rem;
-            font-size: 1.7rem;
+            font-size: clamp(0.5rem, 1.7vw, 1.7rem) ;
             background: linear-gradient(to right, #787878,
                     #b5b5b5, #e3e3e3, #b5b5b5, #787878);
             background-size: 200%;
@@ -220,7 +222,7 @@ body > main > form::after {
     bottom: 4em;
     left: 6%;
 
-    font-size: 6em;
+    font-size: clamp(2.1em, 6vw, 6em);
     transform: translateX(-50%);
 
     opacity: 0;
