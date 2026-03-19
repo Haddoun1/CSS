@@ -1,3 +1,5 @@
+@layer base {
+
 @font-face {
     font-family: "Remarcle";
     src: url("fonts/remarcle/Remarcle.ttf") format("truetype");
@@ -16,6 +18,10 @@
 :root:has([value="disco"]:checked) {
     color-scheme: dark;
 }
+
+}
+
+
 
 body {
     display: flex;
@@ -234,7 +240,7 @@ body>main>form:has(> label:nth-of-type(2) > input:checked)::after {
 }
 
 
-/* MARK: Key frames/Animaties */
+/* MARK: Key frames/Animaties */'
 
 @keyframes stretch {
     0% {
@@ -304,3 +310,4 @@ body>main>form:has(> label:nth-of-type(2) > input:checked)::after {
         transform: translateY(-2em) scale(0.8);
     }
 }
+
