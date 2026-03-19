@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Remarcle";
+    src: url("fonts/remarcle/Remarcle.ttf") format("truetype");
+    font-style: normal;
+}
+
 :root {
     color-scheme: light dark;
     --bg: light-dark(#E3D082, #2d2609);
@@ -23,14 +29,11 @@ main::before {
     content: "";
     position: fixed;
     inset: 0;
-
     background: rgba(255, 255, 200, 0.35);
-
     clip-path: polygon(29% 0%,
             71% 0%,
             100% 85%,
             0% 85%);
-
     opacity: 0;
     pointer-events: none;
 }
@@ -59,10 +62,7 @@ body>main>form {
     border-color: #F0EACE;
     border-style: inset;
     border-width: 0.5em;
-    animation-name: stretch;
-    animation-timing-function: ease-in-out;
-    animation-duration: 2s;
-    animation-iteration-count: infinite; 
+    animation: none;
 
     >div:nth-of-type(1) {
         display: grid;
@@ -120,9 +120,9 @@ body>main>form {
 
     >div:nth-of-type(3) {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas:
-            "div7 div8 div9 div10 div11 div12 div13";
+            ". text .";
         grid-area: div3;
         width: clamp(10.3em, 31vw, 31em);
         height: clamp(7.3em, 22vw, 22em);
@@ -133,11 +133,29 @@ body>main>form {
         margin-top: clamp(0.3em, 1vw, 1em);
         margin-right: clamp(0.3em, 1vw, 1em);
 
+        /* https://www.youtube.com/shorts/HUkZxON7t1I */
+
+        >h1 {
+            grid-area: text;
+            align-self: end;
+            font-family: "Remarcle", serif;
+            border: 4mm ridge #F0EACE;
+            padding: 1rem;
+            font-size: 1.7rem;
+            background: linear-gradient(to right, #787878,
+                    #b5b5b5, #e3e3e3, #b5b5b5, #787878);
+            background-size: 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: animateTitle 2.5s linear infinite;
+        }
+
     }
 
     >label:nth-of-type(1) {
         grid-area: div2;
-        
+
         width: clamp(3em, 6vw, 7em);
         height: clamp(3em, 6vw, 7em);
         border-color: #000000;
@@ -175,6 +193,28 @@ body>main>div {
     width: clamp(100vw);
     background-color: #301c00;
 }
+
+label {
+    transform: rotate(0deg);
+    transition: transform 0.4s ease;
+}
+
+label:nth-of-type(1):has(input:checked) {
+    transform: rotate(120deg);
+    transition: transform 0.4s ease;
+}
+
+label:nth-of-type(2):has(input:checked) {
+    transform: rotate(120deg);
+    transition: transform 0.4s ease;
+}
+
+body > main > form:has(> label:nth-of-type(1) > input:checked) {
+    animation: stretch 2s ease-in-out infinite;
+}
+
+
+/* MARK: Key frames/Animaties */
 
 @keyframes stretch {
     0% {
@@ -217,5 +257,13 @@ body>main>div {
 
     100% {
         background: rgb(255 0 255 / 0.35);
+    }
+}
+
+@keyframes animateTitle {
+
+
+    to {
+        background-position: 200%;
     }
 }
