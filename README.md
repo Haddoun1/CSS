@@ -100,14 +100,14 @@ Readme voor het vak CSS
 
 <h2>Herkansing</h2>
 <h3>Feedback</h3>
-<li>
+
 <ol>probeer de themes in de radio te zetten</ol>
 <ol>2. style of container query gebruiken</ol>
 <ol>3. grid area voor responsiveness</ol>
 <ol>4. range slider voor de channel switch voor de radio en de emojis veranderen. use style query</ol>
 <ol>5. play around with gradient. for the speaker mash effects</ol>
 <ol>6. meer detail op mijn radio</ol>
-</li>
+
 <h3>Wat heb ik gedaan vandaag?</h3>
 <p></p>
 
