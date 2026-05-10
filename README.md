@@ -1,7 +1,6 @@
 # CSS
 Readme voor het vak CSS
 
-
 <h>Week 1</h1>
 
 <h2>Dag 1 (04-03-2026)</h2>
@@ -98,5 +97,20 @@ Readme voor het vak CSS
 <p>Ik heb geleerd hoe ik muziek notes kan maken met behulp van pseudo-elementen en emojis.</p>
 <h3>Bronnen</h3>
 <p>Geen bronnen gebruikt vandaag.</p>
+
+<h2>Herkansing</h2>
+<h3>Feedback</h3>
+<li>
+<ol>
+1. probeer de themes in de radio te zetten
+2. style of container query gebruiken
+3. grid area voor responsiveness
+4. range slider voor de channel switch voor de radio en de emojis veranderen. use style query
+5. play around with gradient. for the speaker mash effects
+6. meer detail op mijn radio
+</ol>
+</li>
+<h3>Wat heb ik gedaan vandaag?</h3>
+<p></p>
 
 
