@@ -20,8 +20,15 @@ body {
 
 :root {
     color-scheme: light dark;
-    --bg: light-dark(#E3D082, #2d2609);
-    --bounce-duration: 2s;
+
+    --background: light-dark(
+        var(--background-light),
+        var(--background-dark)
+    );
+
+    --background-light: #E3D082;
+    --background-dark: #2d2609;
+    --bounce-duration: 3s;
 }
 
 /* Hulp van ChatGPT dat de inputs het deden als de animaties spelen */
@@ -97,7 +104,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    background-color: var(--bg);
+    background-color: var(--background);
     overflow: hidden;
 }
 
@@ -439,7 +446,7 @@ body>main>form {
             background: linear-gradient(to right,
                     #505050, #787878, #c8c8c8,
                     #f0f0f0, #c8c8c8, #787878, #505050);
-            background-size: 300%;
+            background-size: 200%;
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -652,196 +659,195 @@ body>main>div {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ─────────────────────────────────────────────
    MARK: Keyframes
 ───────────────────────────────────────────── */
 
 @keyframes bounce {
     0% {
-        transform: scaleX(1) scaleY(1);
+        transform: scale(1, 1);
     }
 
     8% {
-        transform: scaleX(1.06) scaleY(0.93);
+        transform: scale(1.06, 0.93);
     }
 
     20% {
-        transform: scaleX(0.93) scaleY(1.12);
+        transform: scale(0.93, 1.12);
     }
 
     34% {
-        transform: scaleX(1.03) scaleY(0.97);
+        transform: scale(1.03, 0.97);
     }
 
     46% {
-        transform: scaleX(0.97) scaleY(1.05);
+        transform: scale(0.97, 1.05);
     }
 
     58% {
-        transform: scaleX(1.015) scaleY(0.986);
+        transform: scale(1.015, 0.986);
     }
 
     70% {
-        transform: scaleX(0.99) scaleY(1.02);
+        transform: scale(0.99, 1.02);
     }
 
     82% {
-        transform: scaleX(1.005) scaleY(0.997);
+        transform: scale(1.005, 0.997);
     }
 
     92% {
-        transform: scaleX(0.998) scaleY(1.003);
+        transform: scale(0.998, 1.003);
     }
 
     100% {
-        transform: scaleX(1) scaleY(1);
+        transform: scale(1, 1);
     }
 }
 
-@keyframes bounce-sideways {
-    0% {
-        transform: rotate(90deg) scaleX(1) scaleY(1);
-    }
-
-    8% {
-        transform: rotate(90deg) scaleX(1.06) scaleY(0.93);
-    }
-
-    20% {
-        transform: rotate(90deg) scaleX(0.93) scaleY(1.12);
-    }
-
-    34% {
-        transform: rotate(90deg) scaleX(1.03) scaleY(0.97);
-    }
-
-    46% {
-        transform: rotate(90deg) scaleX(0.97) scaleY(1.05);
-    }
-
-    58% {
-        transform: rotate(90deg) scaleX(1.015) scaleY(0.986);
-    }
-
-    70% {
-        transform: rotate(90deg) scaleX(0.99) scaleY(1.02);
-    }
-
-    82% {
-        transform: rotate(90deg) scaleX(1.005) scaleY(0.997);
-    }
-
-    92% {
-        transform: rotate(90deg) scaleX(0.998) scaleY(1.003);
-    }
-
-    100% {
-        transform: rotate(90deg) scaleX(1) scaleY(1);
-    }
-}
 
 @keyframes broken {
-    0% {
-        transform: translateX(0) translateY(0) rotate(0deg);
+
+    0%,
+    100% {
+        translate: 0 0;
+        rotate: 0deg;
     }
 
     10% {
-        transform: translateX(-3px) translateY(-2px) rotate(-1.5deg);
+        translate: -3px -2px;
+        rotate: -1.5deg;
     }
 
     20% {
-        transform: translateX(4px) translateY(3px) rotate(1.5deg);
+        translate: 4px 3px;
+        rotate: 1.5deg;
     }
 
     30% {
-        transform: translateX(-5px) translateY(1px) rotate(-2deg);
+        translate: -5px 1px;
+        rotate: -2deg;
     }
 
     40% {
-        transform: translateX(3px) translateY(-3px) rotate(1deg);
+        translate: 3px -3px;
+        rotate: 1deg;
     }
 
     50% {
-        transform: translateX(-2px) translateY(4px) rotate(-1deg);
+        translate: -2px 4px;
+        rotate: -1deg;
     }
 
     60% {
-        transform: translateX(5px) translateY(-1px) rotate(2deg);
+        translate: 5px -1px;
+        rotate: 2deg;
     }
 
     70% {
-        transform: translateX(-4px) translateY(2px) rotate(-1.5deg);
+        translate: -4px 2px;
+        rotate: -1.5deg;
     }
 
     80% {
-        transform: translateX(2px) translateY(-4px) rotate(1deg);
+        translate: 2px -4px;
+        rotate: 1deg;
     }
 
     90% {
-        transform: translateX(-3px) translateY(3px) rotate(-0.5deg);
-    }
-
-    100% {
-        transform: translateX(0) translateY(0) rotate(0deg);
+        translate: -3px 3px;
+        rotate: -0.5deg;
     }
 }
 
 @keyframes sparks {
     0% {
-        transform: scale(0.8) rotate(-10deg);
+        scale: 0.8;
+        rotate: -10deg;
         opacity: 0.7;
     }
 
     50% {
-        transform: scale(1.3) rotate(8deg);
+        scale: 1.3;
+        rotate: 8deg;
         opacity: 1;
     }
 
     100% {
-        transform: scale(0.9) rotate(-5deg);
+        scale: 0.9;
+        rotate: -5deg;
         opacity: 0.8;
     }
 }
 
+
 @keyframes smoke {
     0% {
         opacity: 0;
-        transform: translateY(0) scale(0.5) rotate(-3deg);
+        translate: 0 0;
+        scale: 0.5;
+        rotate: -3deg;
     }
 
     20% {
         opacity: 0.9;
-        transform: translateY(-0.5em) scale(0.9) rotate(2deg);
+        translate: 0 -0.5em;
+        scale: 0.9;
+        rotate: 2deg;
     }
 
     60% {
         opacity: 0.6;
-        transform: translateY(-2em) scale(1.2) rotate(-4deg);
+        translate: 0 -2em;
+        scale: 1.2;
+        rotate: -4deg;
     }
 
     100% {
         opacity: 0;
-        transform: translateY(-4em) scale(1.5) rotate(6deg);
+        translate: 0 -4em;
+        scale: 1.5;
+        rotate: 6deg;
     }
 }
 
+
 @keyframes table-shake {
-    0% {
-        transform: translateX(0);
+
+    0%,
+    100% {
+        translate: 0;
     }
 
     25% {
-        transform: translateX(-2px);
+        translate: -2px 0;
     }
 
     75% {
-        transform: translateX(2px);
-    }
-
-    100% {
-        transform: translateX(0);
+        translate: 2px 0;
     }
 }
+
 
 @keyframes disco-beams {
     0% {
@@ -899,16 +905,19 @@ body>main>div {
 @keyframes music {
     0% {
         opacity: 0;
-        transform: translateY(2em) scale(0.5);
+        translate: 0 2em;
+        scale: 0.5;
     }
 
     30% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        translate: 0 0;
+        scale: 1;
     }
 
     100% {
         opacity: 0;
-        transform: translateY(-2em) scale(0.8);
+        translate: 0 -2em;
+        scale: 0.8;
     }
 }
