@@ -21,10 +21,8 @@ body {
 :root {
     color-scheme: light dark;
 
-    --background: light-dark(
-        var(--background-light),
-        var(--background-dark)
-    );
+    --background: light-dark(var(--background-light),
+            var(--background-dark));
 
     --background-light: #E3D082;
     --background-dark: #2d2609;
