@@ -111,4 +111,8 @@ Readme voor het vak CSS
 <h3>Wat heb ik gedaan vandaag?</h3>
 <p>Ik heb zoveel mogelijk proberen te veranderen dat aan mijn website waar ik feedback op heb gekregen. Ik ben als eerst begonnen met het aanpassen van de tafel. Dit was letterlijk een bruine blok de zelfde grote als de radio dus ik heb dit langer gemaakt en ik heb het meer detail gegeven. Ik ben daarna bezig geweest met het toepassen van een tweede css techniek. Ik had al nesting en ik probeerde layers te gebruiken maar dat ging niet goed. Dus ik heb nu een style querie gebruikt voor verschillende emojis bij verschillende groottes van je scherm. Dus een kleinere radio heeft minder emojis dan een grotere radio. Ik heb daarna de themes gekoppeld aan de radio zelf inplaats van er buiten. Daarna heb ik zo goed mogelijk geprobeerd om de radio wat meer realsitischer te maken met gradient. Ik probeerde eigenlijk zoveel mogelijk te doen wat Nils me heeft uitgelegt tijdens het feedback gesprek en ik vond dat het wel beter is geworden. Tot slot heb ik de disco lichten zelf ook aangepast zodat het niet out of place leek met de rest van de realistische elementen. Ik heb ook een soort van easter egg erin gezet dat als alle knoppen zijn geselecteerd dat de radio gaat trippen. </p>
 
+<h2>Herherkansing</h2>
+<h3>Feedback</h3>
+<p>Ik kreeg van Sanne tehoren dat mijn css nog heel slordig is. Ik moet deze dus aanpassen.</p>
+
 

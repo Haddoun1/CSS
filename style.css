@@ -1,14 +1,32 @@
+/* Font Face */
+
 @font-face {
     font-family: "Remarcle";
     src: url("fonts/remarcle/Remarcle.ttf") format("truetype");
     font-style: normal;
 }
 
+/* Reduced Motion Support */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Reset */
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+
+/* Reset Layout */
 
 html,
 body {
@@ -18,83 +36,43 @@ body {
     overflow-x: hidden;
 }
 
+/* ─────────────────────────────────────────────
+   MARK: Variabelen
+───────────────────────────────────────────── */
+
 :root {
     color-scheme: light dark;
 
-    --background: light-dark(var(--background-light),
-            var(--background-dark));
-
+    /* Achtergrond */
+    --background: light-dark(var(--background-light), var(--background-dark));
     --background-light: #E3D082;
     --background-dark: #2d2609;
+
+    /* Kleuren */
+    --color-border-dark: #1e2e1e;
+    --color-border-light: #8aaa82;
+    --color-input-dark: #2a2a25;
+    --color-shadow-dark: rgba(0, 0, 0, 0.7);
+    --color-highlight: rgba(255, 255, 255, 0.35);
+    --color-focus: #7fff7f;
+
+    /* Animatie */
     --bounce-duration: 3s;
+
+    /* Maten */
+    --margin-inset: clamp(0.3em, 1vw, 1em);
+    --border-width-sm: clamp(0.3em, 0.5vw, 0.5em);
+    --label-size: clamp(1.5em, 6vw, 7em);
+
+    /* Z-index lagen */
+    --z-base: 1;
+    --z-raised: 2;
+    --z-top: 10;
 }
 
-/* Hulp van ChatGPT dat de inputs het deden als de animaties spelen */
-input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    margin: 0;
-    z-index: 10;
-}
-
-/* Thema veranderen disco mode */
-:root:has(form > label:nth-of-type(1) > input:checked) {
-    color-scheme: dark;
-}
-
-:root:not(:has(form > label:nth-of-type(1) > input:checked)) {
-    color-scheme: light;
-}
-
-/* Snelheid animatie hoger zetten */
-:root:has(form > div:nth-of-type(1) > div:nth-of-type(2) > input:checked) {
-    --bounce-duration: 0.9s;
-}
-
-:root:has(form > label:nth-of-type(1) > input:checked):has(form > label:nth-of-type(2) > input:checked):has(form > div:nth-of-type(1) > div:nth-of-type(2) > input:checked) {
-
-    body>main>form {
-        animation: broken 0.15s linear infinite !important;
-        filter: brightness(1.4) saturate(2) hue-rotate(10deg);
-
-        &::before {
-            content: "💥";
-            position: absolute;
-            inset: auto;
-            top: -1.5em;
-            left: 30%;
-            font-size: clamp(1.5em, 4vw, 4em);
-            background: none;
-            animation: sparks 0.3s ease-out infinite alternate;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        &::after {
-            content: "💨💨💨";
-            position: absolute;
-            bottom: auto;
-            top: -3em;
-            left: 15%;
-            font-size: clamp(1.2em, 3.5vw, 3.5em);
-            opacity: 1;
-            transform: none;
-            animation: smoke 1.2s ease-out infinite !important;
-            pointer-events: none;
-            z-index: 11;
-        }
-    }
-
-    body>main>div {
-        animation: table-shake 0.15s linear infinite;
-    }
-}
+/* ─────────────────────────────────────────────
+   MARK: Body Layout
+───────────────────────────────────────────── */
 
 body {
     min-height: 100vh;
@@ -114,7 +92,7 @@ main {
 }
 
 /* ─────────────────────────────────────────────
-   MARK: Disco
+   MARK: Disco Lights/Themes
 ───────────────────────────────────────────── */
 
 main::before {
@@ -135,12 +113,14 @@ main::before {
 :root:has(form > label:nth-of-type(1) > input:checked) main::before {
     opacity: 1;
     animation: disco-beams 4s linear infinite;
-    z-index: 3;
+    z-index: var(--z-top);
 }
 
 /* ─────────────────────────────────────────────
-   MARK: Radio body 
+   MARK: Radio body
 ───────────────────────────────────────────── */
+
+/* Radio body grid */
 
 body>main>form {
     position: relative;
@@ -161,7 +141,7 @@ body>main>form {
             #233527 72%,
             #1a2a1e 100%);
 
-    border-color: #8aaa82 #1e2e1e #1e2e1e #8aaa82;
+    border-color: var(--color-border-light) var(--color-border-dark) var(--color-border-dark) var(--color-border-light);
     border-style: solid;
     border-width: 0.5em;
 
@@ -173,9 +153,8 @@ body>main>form {
         0 0.8em 2.5em rgba(0, 0, 0, 0.6),
         0 0.2em 0.5em rgba(0, 0, 0, 0.5);
 
-    animation: none;
+    /* transform-origin is nodig voor de bounce animatie zodat het vast blijf aan de onderkant */
     transform-origin: bottom center;
-    container-type: inline-size;
 
     &::before {
         content: "";
@@ -188,8 +167,9 @@ body>main>form {
                 transparent 3px,
                 rgba(0, 0, 0, 0.04) 3px,
                 rgba(0, 0, 0, 0.04) 4px);
-        z-index: 0;
     }
+
+    /* Muzieknoten */
 
     &::after {
         content: "🎵🎵🎶🎵🎵🎶";
@@ -202,6 +182,7 @@ body>main>form {
         pointer-events: none;
     }
 
+    /* Luidspreker paneel */
     >div:nth-of-type(1) {
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
@@ -210,7 +191,7 @@ body>main>form {
         width: clamp(5em, 15vw, 15em);
         height: clamp(7.3em, 22vw, 22em);
         position: relative;
-        z-index: 1;
+        z-index: var(--z-base);
 
         background:
             linear-gradient(135deg,
@@ -221,15 +202,15 @@ body>main>form {
 
         border-color: #6a8263 #111 #111 #6a8263;
         border-style: solid;
-        border-width: clamp(0.3em, 0.5vw, 0.5em);
+        border-width: var(--border-width-sm);
 
         box-shadow:
             inset 0 0.3em 0.8em rgba(0, 0, 0, 0.8),
             inset 0 -0.1em 0.3em rgba(255, 255, 255, 0.05),
             inset 0.15em 0 0.3em rgba(0, 0, 0, 0.6);
 
-        margin-top: clamp(0.3em, 1vw, 1em);
-        margin-left: clamp(0.3em, 1vw, 1em);
+        margin-top: var(--margin-inset);
+        margin-left: var(--margin-inset);
 
         &::before {
             content: "";
@@ -247,9 +228,10 @@ body>main>form {
                     rgba(255, 255, 255, 0.03) 2px,
                     rgba(255, 255, 255, 0.03) 3px);
             pointer-events: none;
-            z-index: 1;
+            z-index: var(--z-base);
         }
 
+        /* Schuifregelaar spoor (links) */
         >div:nth-of-type(1) {
             grid-area: div5;
             width: clamp(0.1em, 2vw, 2em);
@@ -265,18 +247,19 @@ body>main>form {
 
             border-color: #555 #222 #222 #555;
             border-style: solid;
-            border-width: clamp(0.3em, 0.5vw, 0.5em);
+            border-width: var(--border-width-sm);
 
             box-shadow:
                 inset 0 0 0.4em rgba(0, 0, 0, 0.9),
-                0 0 0.2em rgba(0, 0, 0, 0.7);
+                0 0 0.2em var(--color-shadow-dark);
 
             justify-self: left;
             align-self: center;
             position: relative;
-            z-index: 2;
+            z-index: var(--z-raised);
         }
 
+        /* Schuifregelaar hendel (rechts, interactief) */
         >div:nth-of-type(2) {
             grid-area: div5;
             width: clamp(0.1em, 2vw, 2em);
@@ -294,7 +277,7 @@ body>main>form {
 
             border-color: #666 #1a1a1a #1a1a1a #666;
             border-style: solid;
-            border-width: clamp(0.3em, 0.5vw, 0.5em);
+            border-width: var(--border-width-sm);
 
             box-shadow:
                 inset 0 0 0.5em rgba(0, 0, 0, 0.95),
@@ -302,9 +285,8 @@ body>main>form {
 
             justify-self: right;
             align-self: center;
-
             position: relative;
-            z-index: 2;
+            z-index: var(--z-raised);
             overflow: visible;
             cursor: pointer;
 
@@ -332,12 +314,12 @@ body>main>form {
                 transition:
                     bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                     top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 1;
+                z-index: var(--z-base);
                 pointer-events: none;
             }
 
             >input[type="checkbox"] {
-                z-index: 5;
+                z-index: var(--z-top);
             }
 
             &:has(> input:checked) {
@@ -370,12 +352,13 @@ body>main>form {
         }
     }
 
+    /* Midden paneel */
     >div:nth-of-type(2) {
         grid-area: div2;
         width: clamp(1em, 4vw, 4em);
         height: clamp(1em, 6vw, 7em);
         position: relative;
-        z-index: 1;
+        z-index: var(--z-base);
 
         background:
             radial-gradient(ellipse at 35% 30%,
@@ -395,6 +378,7 @@ body>main>form {
         align-self: center;
     }
 
+    /* Naam paneel */
     >div:nth-of-type(3) {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -403,7 +387,7 @@ body>main>form {
         width: clamp(10.3em, 31vw, 31em);
         height: clamp(7.3em, 22vw, 22em);
         position: relative;
-        z-index: 1;
+        z-index: var(--z-base);
 
         background:
             linear-gradient(135deg,
@@ -412,17 +396,17 @@ body>main>form {
                 #2e3e2c 70%,
                 #1e2e1c 100%);
 
-        border-color: #7a9a72 #1e2e1e #1e2e1e #7a9a72;
+        border-color: #7a9a72 var(--color-border-dark) var(--color-border-dark) #7a9a72;
         border-style: solid;
-        border-width: clamp(0.3em, 0.5vw, 0.5em);
+        border-width: var(--border-width-sm);
 
         box-shadow:
             inset 0 0.2em 0.5em rgba(255, 255, 255, 0.08),
             inset 0 -0.2em 0.4em rgba(0, 0, 0, 0.5),
             inset 0.15em 0 0.3em rgba(255, 255, 255, 0.04);
 
-        margin-top: clamp(0.3em, 1vw, 1em);
-        margin-right: clamp(0.3em, 1vw, 1em);
+        margin-top: var(--margin-inset);
+        margin-right: var(--margin-inset);
 
         >h1 {
             grid-area: text;
@@ -452,12 +436,28 @@ body>main>form {
         }
     }
 
-    >label {
+    /* Gedeelde stijlen voor beide knoppen */
+    >label:is(:nth-of-type(1), :nth-of-type(2)) {
+        grid-area: div2;
+        width: var(--label-size);
+        height: var(--label-size);
+        border-radius: 100%;
+        border: none;
+        justify-self: center;
         position: relative;
-        z-index: 2;
+        z-index: var(--z-raised);
         cursor: pointer;
-        transform: rotate(0deg);
         transition: transform 0.4s ease, box-shadow 0.3s ease, filter 0.2s ease;
+
+        background:
+            radial-gradient(circle at 35% 30%,
+                #d0d0c0 0%, #a0a090 25%, #606055 60%, var(--color-input-dark) 100%);
+
+        box-shadow:
+            inset 0.15em 0.2em 0.4em var(--color-highlight),
+            inset -0.1em -0.15em 0.3em rgba(0, 0, 0, 0.7),
+            0 0.3em 0.8em var(--color-shadow-dark),
+            0 0.1em 0.2em rgba(0, 0, 0, 0.5);
 
         &::after {
             content: "";
@@ -497,51 +497,23 @@ body>main>form {
         }
     }
 
+    /* Bovenste knop (disco) */
     >label:nth-of-type(1) {
-        grid-area: div2;
-        width: clamp(1.5em, 6vw, 7em);
-        height: clamp(1.5em, 6vw, 7em);
-        border-radius: 100%;
-        border: none;
-        margin-top: clamp(0.3em, 1vw, 1em);
-        justify-self: center;
-
-        background:
-            radial-gradient(circle at 35% 30%,
-                #d0d0c0 0%, #a0a090 25%, #606055 60%, #2a2a25 100%);
-
-        box-shadow:
-            inset 0.15em 0.2em 0.4em rgba(255, 255, 255, 0.35),
-            inset -0.1em -0.15em 0.3em rgba(0, 0, 0, 0.7),
-            0 0.3em 0.8em rgba(0, 0, 0, 0.7),
-            0 0.1em 0.2em rgba(0, 0, 0, 0.5);
+        margin-top: var(--margin-inset);
     }
 
+    /* Onderste knop (bounce) */
     >label:nth-of-type(2) {
-        grid-area: div2;
-        width: clamp(1.5em, 6vw, 7em);
-        height: clamp(1.5em, 6vw, 7em);
-        border-radius: 100%;
-        border: none;
-        margin-bottom: clamp(0.3em, 1vw, 1em);
-        justify-self: center;
+        margin-bottom: var(--margin-inset);
         align-self: end;
-
-        background:
-            radial-gradient(circle at 35% 30%,
-                #d0d0c0 0%, #a0a090 25%, #606055 60%, #2a2a25 100%);
-
-        box-shadow:
-            inset 0.15em 0.2em 0.4em rgba(255, 255, 255, 0.35),
-            inset -0.1em -0.15em 0.3em rgba(0, 0, 0, 0.7),
-            0 0.3em 0.8em rgba(0, 0, 0, 0.7),
-            0 0.1em 0.2em rgba(0, 0, 0, 0.5);
     }
 }
 
 body>main>form:has(> label:nth-of-type(2) > input:checked) {
     animation: bounce var(--bounce-duration) ease-in-out infinite;
 }
+
+/* Container queries voor muzieknoten */
 
 @container (max-width: 30em) {
     body>main>form::after {
@@ -568,6 +540,7 @@ body>main>form:has(> label:nth-of-type(2) > input:checked) {
 body>main>form:has(> label:nth-of-type(2) > input:checked)::after {
     animation: music 1s ease-out infinite;
 }
+
 
 /* ─────────────────────────────────────────────
    MARK: Tafel
@@ -607,6 +580,90 @@ body>main>div {
                 transparent 0px, transparent 12px,
                 rgba(255, 255, 255, 0.03) 12px, rgba(255, 255, 255, 0.03) 13px);
         pointer-events: none;
+    }
+}
+
+/* ─────────────────────────────────────────────
+   MARK: Input Styles
+───────────────────────────────────────────── */
+
+/* Hulp van ChatGPT dat de inputs het deden als de animaties spelen */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+    z-index: var(--z-top);
+}
+
+/* Focus State */
+label:has(input[type="checkbox"]:focus-visible),
+div:has(input[type="checkbox"]:focus-visible) {
+    outline: 3px dotted var(--color-focus);
+    outline-offset: 10px;
+}
+
+/* ─────────────────────────────────────────────
+   MARK: Easter Egg
+───────────────────────────────────────────── */
+
+/* Disco modus aanzetten */
+:root:has(form > label:nth-of-type(1) > input:checked) {
+    color-scheme: dark;
+}
+
+/* Licht thema herstellen als disco uit is */
+:root:not(:has(form > label:nth-of-type(1) > input:checked)) {
+    color-scheme: light;
+}
+
+/* Snelheid animatie verhogen */
+:root:has(form > div:nth-of-type(1) > div:nth-of-type(2) > input:checked) {
+    --bounce-duration: 0.9s;
+}
+
+/* Easter Egg: alle drie de checkboxes aan */
+:root:has(form > label:nth-of-type(1) > input:checked):has(form > label:nth-of-type(2) > input:checked):has(form > div:nth-of-type(1) > div:nth-of-type(2) > input:checked) {
+
+    body>main>form {
+        animation: broken 0.15s linear infinite !important;
+        filter: brightness(1.4) saturate(2) hue-rotate(10deg);
+
+        &::before {
+            content: "💥";
+            position: absolute;
+            inset: auto;
+            top: -1.5em;
+            left: 30%;
+            font-size: clamp(1.5em, 4vw, 4em);
+            background: none;
+            animation: sparks 0.3s ease-out infinite alternate;
+            z-index: var(--z-top);
+            pointer-events: none;
+        }
+
+        &::after {
+            content: "💨💨💨";
+            position: absolute;
+            bottom: auto;
+            top: -3em;
+            left: 15%;
+            font-size: clamp(1.2em, 3.5vw, 3.5em);
+            opacity: 1;
+            transform: none;
+            animation: smoke 1.2s ease-out infinite !important;
+            pointer-events: none;
+            z-index: var(--z-top);
+        }
+    }
+
+    body>main>div {
+        animation: table-shake 0.15s linear infinite;
     }
 }
 
@@ -651,31 +708,8 @@ body>main>div {
         transform-origin: center center;
         margin: 0;
 
-        &:has(> label:nth-of-type(2) > input:checked) {
-            animation: bounce-sideways var(--bounce-duration) ease-in-out infinite;
-        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ─────────────────────────────────────────────
    MARK: Keyframes
